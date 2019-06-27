@@ -8,6 +8,9 @@ support_thickness_upper = 2;
 support_thickness_lower = 1.4;
 support_thickness_taper_upper = 0;
 
+support_rib_size = 6;
+support_rib_thickness = 1.15;
+
 support_depth = 11;
 support_depth_lower = 8.5;
 
@@ -52,6 +55,22 @@ union() {
                     };
                 }
             }
+        }
+    }
+    intersection() {
+        hull() {
+            translate([0, 0, pin_diameter/2]) {
+                sphere(support_rib_thickness / 2);
+            }
+            translate([0, 0, pin_diameter/2 - support_rib_size]) {
+                sphere(support_rib_thickness / 2);
+            }
+            translate([0, support_rib_size, pin_diameter/2]) {
+                sphere(support_rib_thickness / 2);
+            }
+        }
+        translate([-support_depth/2, 0, pin_diameter/2-support_length_lower]) {
+            cube([support_depth, support_length_upper, support_length_lower]);
         }
     }
 }
