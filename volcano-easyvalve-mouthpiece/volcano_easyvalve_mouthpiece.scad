@@ -1,8 +1,8 @@
 // Detail level
 $fn = 300;
 
-outer_shaft_od = 16;
-outer_shaft_detent_depth = 1;
+outer_shaft_od = 16.5;
+outer_shaft_detent_depth = 0.5;
 outer_shaft_detent_length = 4.5;
 outer_shaft_detent_offset = 2;
 outer_shaft_detent_chamfer_length = 0.75;
@@ -15,7 +15,7 @@ inner_shaft_length = 37.5;
 
 lip_od = 33.4;
 lip_depth = 7;
-lip_rim_thickness = 1.5;
+lip_rim_thickness = 1;
 lip_resolution_step = 0.025;
 
 difference() {
