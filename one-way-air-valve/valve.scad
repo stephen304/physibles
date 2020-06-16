@@ -34,7 +34,7 @@ difference() {
         cylinder(d=chamber_od-(wall_thickness*2)+dovetail_pin_thickness*2+dovetail_slot_slop, h=dovetail_pin_length+1);
         cylinder(d=chamber_od-(wall_thickness*2)-dovetail_slot_slop, h=dovetail_pin_length+1);
     }
-    translate([-50, -100, -1]) cube([100, 100, 100]);
+    //translate([-50, -100, -1]) cube([100, 100, 100]);
 }
 // Cone
 translate([0, 0, valve_grid_thickness]) difference() {
