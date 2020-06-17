@@ -8,7 +8,7 @@ dovetail_pin_length = 1.5;
 
 tube_length = 10;
 transition_length = 10;
-chamber_length = 10;
+chamber_length = 5;
 valve_grid_thickness = 3;
 wafer_travel = 2.5;
 grid_hole_diameter = 2;
@@ -50,8 +50,8 @@ translate([0, 0, valve_grid_thickness+transition_length]) difference() {
 // Out flow
 translate([chamber_od + 10, 0, 0]) union() {
     difference() {
-        cylinder(d=chamber_od, h=chamber_length);
-        translate([0, 0, valve_grid_thickness]) cylinder(d=chamber_od-(wall_thickness*2), h=chamber_length);
+        cylinder(d=chamber_od, h=chamber_length+valve_grid_thickness);
+        translate([0, 0, valve_grid_thickness]) cylinder(d=chamber_od-(wall_thickness*2), h=chamber_length+1);
         translate([0, 0, -0.5]) {
             // Holes
             cylinder(d=2, h=valve_grid_thickness+1);
@@ -62,12 +62,12 @@ translate([chamber_od + 10, 0, 0]) union() {
                 rotate([0, 0, a]) translate([7, 0, 0]) cylinder(d=grid_hole_diameter, h=valve_grid_thickness+1);
             }
             for (a = [0:20:360]) {
-                rotate([0, 0, a]) translate([10, 10, 0]) cylinder(d=grid_hole_diameter, h=valve_grid_thickness+1);
+                //rotate([0, 0, a]) translate([10, 10, 0]) cylinder(d=grid_hole_diameter, h=valve_grid_thickness+1);
             }
         }
     }
     // Pins
-    translate([0, 0, 0]) {
+    translate([0, 0, valve_grid_thickness]) {
         for (a = [0:90:360]) {
             rotate([0, 0, a]) translate([4, 4, 0]) cylinder(d=2, h=chamber_length-wafer_travel);
         }
@@ -76,7 +76,7 @@ translate([chamber_od + 10, 0, 0]) union() {
         }
     }
     // Dovetail thing
-    translate([0, 0, chamber_length]) difference() {
+    translate([0, 0, chamber_length+valve_grid_thickness]) difference() {
         cylinder(d=chamber_od-wall_thickness*2+dovetail_pin_thickness*2, h=dovetail_pin_length);
         translate([0, 0, -0.5]) cylinder(d=chamber_od-wall_thickness*2, h=dovetail_pin_length+1);
     }
